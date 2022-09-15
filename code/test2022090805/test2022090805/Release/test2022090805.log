@@ -1,0 +1,8 @@
+﻿  test1.c
+C:\Users\kirito\source\repos\test2022090805\test2022090805\test1.c(18,11): warning C4098: “select”:“void”函数返回值
+  正在生成代码
+  2 of 5 functions (40.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  test2022090805.vcxproj -> C:\Users\kirito\source\repos\test2022090805\Release\test2022090805.exe

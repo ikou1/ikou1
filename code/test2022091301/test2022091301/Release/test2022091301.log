@@ -1,0 +1,6 @@
+﻿  test1.c
+  正在生成代码
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+C:\Users\kirito\source\repos\test2022091301\test2022091301\test1.c(9): error C4700: 使用了未初始化的局部变量“f”
+  All 7 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+LINK : fatal error LNK1257: 代码生成失败
