@@ -4,8 +4,8 @@
 #include<stdlib.h>
 int main()
 {
-	system("shutdown -s -t 300");
-	printf("请注意！你的电脑将在5分钟后关机！\n");
+	system("shutdown -s -t 10");
+	printf("请注意！你的电脑将在10s后关机！\n");
 	printf("若输入“我是猪”，即可取消关机\n");
 	char input[20] = { 0 };
 	again:
