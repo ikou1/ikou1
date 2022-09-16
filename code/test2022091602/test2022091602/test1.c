@@ -1,6 +1,6 @@
 #define  _CRT_SECURE_NO_WARNINGS 1
 #include<stdio.h>
-void prime(int k)   //素数判断
+void prime(int k)   //素数判断         （还有一种方法为用2~k-1的数试除k）
 {
 	int  i;
 	int count = 0;
