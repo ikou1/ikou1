@@ -1,6 +1,6 @@
 #define  _CRT_SECURE_NO_WARNINGS 1
 #include<stdio.h>
-int leap(int k)
+int leap(int k)//1
 {
 	if (k % 400 == 0)
 	{
