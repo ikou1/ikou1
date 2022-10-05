@@ -6,7 +6,7 @@
 int main()
 {
 	char arr1[20];                //创建数组
-	scanf("%s", arr1);               
+	scanf("%s", arr1);
 	printf("%d\n", mystrlen(arr1));    //测试mystrlen
 	reverse1(arr1);                    //用reverse1反转字符串一次
 	printf("%s\n", arr1);             //打印第一次反转结果

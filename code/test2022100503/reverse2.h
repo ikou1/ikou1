@@ -1,2 +1,2 @@
 #define  _CRT_SECURE_NO_WARNINGS 1
-int mystrlen(char*)
+void reserve2(char*);

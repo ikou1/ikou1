@@ -1,8 +1,8 @@
 #define  _CRT_SECURE_NO_WARNINGS 1
-#include<stdio.h>
+#define  _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>                  //×Ö·û´®·´×ª2
 #include"mystrlen.h"
-#include<stdio.h>
-void reserve2(char* str)
+void reverse2(char* str)
 {
 	char tmp;
 	tmp = *str;
@@ -10,7 +10,7 @@ void reserve2(char* str)
 	{
 		*str = *(str + mystrlen(str) - 1);
 		*(str + mystrlen(str) - 1) = '\0';
-		reserve2(str + 1);
+		reverse2(str + 1);
 		*(str + mystrlen(str) - 1) = tmp;
 	}
 }
