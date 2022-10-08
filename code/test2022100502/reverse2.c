@@ -6,11 +6,12 @@ void reverse2(char* str)
 {
 	char tmp;
 	tmp = *str;
-	if (mystrlen(str) >= 2)
+	int len = mystrlen(str);
+	if (len >= 2)
 	{
-		*str = *(str + mystrlen(str) - 1);
-		*(str + mystrlen(str) - 1) = '\0';
+		*str = *(str + len - 1);
+		*(str + len - 1) = '\0';
 		reverse2(str + 1);
-		*(str + mystrlen(str) - 1) = tmp;
+		*(str + len - 1) = tmp;
 	}
 }

@@ -1,1 +1,1 @@
-void reverse2(char*)
+void reverse2(char*);
