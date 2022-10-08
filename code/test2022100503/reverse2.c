@@ -12,5 +12,13 @@ void reverse2(char* str)
 		*(str + len - 1) = '\0';
 		reverse2(str + 1);
 		*(str + len - 1) = tmp;
-	}
+	/*char tmp;
+	tmp = *str;
+		if (mystrlen(str) >= 2)
+		{
+			*str = *(str + mystrlen(str) - 1);
+			*(str + mystrlen(str) - 1) = '\0';
+			reverse2(str + 1);
+			*(str + mystrlen(str) - 1) = tmp;
+		}*/
 }
