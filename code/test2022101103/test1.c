@@ -1,5 +1,5 @@
 #define  _CRT_SECURE_NO_WARNINGS 1
-#include"menu.h"
+#include"game.h"
 #include"stdio.h"
 int main()
 {
@@ -11,7 +11,7 @@ int main()
 		switch (input)
 		{
 		case 1:
-			/*game();*/
+			game();
 			break;
 		case 0:
 			break;
