@@ -11,4 +11,5 @@ void playermove(char board[ROW][COL], int row, int col);
 void computermove(char board[ROW][COL], int row, int col); 
 char iswin(char board[ROW][COL], int row, int col);
 int isfull(char board[ROW][COL], int row, int col);
+void game();
 

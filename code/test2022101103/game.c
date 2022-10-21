@@ -14,9 +14,9 @@ void game()
 	printboard(board, ROW, COL);  //打印棋盘
 	while (1)
 	{
-		rand((unsigned int)time(NULL));
-		playermove(board, ROW, COL);
-		printboard(board, ROW, COL);
+		
+			playermove(board, ROW, COL);
+			printboard(board, ROW, COL);
 		ret = iswin(board, ROW, COL);
 		if (ret != 'C')
 		{
@@ -25,11 +25,12 @@ void game()
 		computermove(board, ROW, COL);
 		printboard(board, ROW, COL);
 		ret = iswin(board, ROW, COL);
-		if (ret != 'C')
-		{
-			break;
-		}
-	}
+	
+	     if (ret != 'C')
+	     {
+		break;
+	     }
+    }
 	if (ret == '*')
 	{
 		printf("你赢啦！\n");
@@ -40,7 +41,7 @@ void game()
 	}
 	else
 	{
-		printf("旗鼓相当的对手！");
+		printf("旗鼓相当的对手！\n");
 	}
 }
 
@@ -103,45 +104,69 @@ void printboard(char board[ROW][COL], int row, int col)
 
 
 //玩家下棋
-void playermove(char board[ROW][COL], int row, int col)
+//void playermove(char board[ROW][COL], int row, int col)
+//{
+//	int x, y;
+//	printf("玩家下棋\n");
+//	while (1)
+//	{
+//		printf("请选择坐标\n");
+//		scanf_s("%d%d", &x, &y);
+//		if (x >= 1 && x <= row && y >= 1 && y <= col)
+//		{
+//			if (board[x - 1][y - 1] == ' ')
+//			{
+//				board[x - 1][y - 1] = '*';
+//				break;
+//			}
+//			else
+//			{
+//				printf("坐标被占，请重新输入\n");
+//			}
+//			
+//		}
+//		else
+//		{
+//			printf("坐标非法，请重新输入\n");
+//		}
+//
+//	}
+//}
+void playermove( char board[ROW][COL], int row, int col)
 {
 	int x, y;
-	printf("玩家下棋\n");
 	while (1)
 	{
-		scanf("%d%d", &x, &y);
+		printf("请选择坐标：\n");
+		scanf_s("%d %d", &x, &y);
 		if (x >= 1 && x <= row && y >= 1 && y <= col)
 		{
 			if (board[x - 1][y - 1] == ' ')
 			{
-				board[x - 1][y - 1] = '*';
-				break;
+				board[x - 1][y - 1] = '*'; break;
 			}
 			else
-			{
-				printf("坐标被占，请重新输入");
-			}
-			
+				printf("坐标被占，请重新上输入\n");
 		}
 		else
 		{
-			printf("坐标非法，请重新输入");
+			printf("坐标非法，请重新输入\n");
 		}
-
 	}
 }
+
   
 
 //电脑下棋
 void computermove(char board[ROW][COL], int row, int col)
 {
-	printf("电脑下棋");
+	printf("电脑下棋\n");
 	int x, y;
 	while (1)
 	{
 		x = rand() % row;
 		y = rand() % col;
-		if (board[x][y] = ' ')
+		if (board[x][y] ==' ')
 		{
 			board[x][y] = '#';
 			break;
