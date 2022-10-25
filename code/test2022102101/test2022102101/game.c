@@ -73,53 +73,99 @@ void SetMine(char board[ROWs][COLs], int row,  int col)   //布置雷
 
 void FindMine(char mine[ROWs][COLs], char show[ROWs][COLs], int row, int col) //排查雷
 {
-	printf("请输入坐标:\n");
-	printf("正确输入格式：row+Space+col+Enter\n");
-	int x, y;
-	int win = 0;
-	while (win<row*col-number)
+	while (1)
 	{
+		int x, y;
+		printf("请输入坐标:\n");
+		printf("正确输入格式：row+Space+col+Enter\n");
 		scanf("%d%d", &x, &y);
-		if (x >= 1 && x <= row && y >= 1 && y <= col)   //判断坐标合法性
+		if (x >= 1 && x <= row && y >= 1 && y <= col)
 		{
-			if (mine[x][y] == '1')                      //踩中雷
+			int count = get_mine_count(mine, x, y);
+			if (mine[x][y] == '1')
 			{
-				printf("很遗憾，你被炸死了\n");
+				Displayboard(mine, ROW, COL);
+				printf("很遗憾，你被炸死了o(╥﹏╥)o\n");
+				printf("ps:“1”表示雷\n\n\n\n\n");
 				break;
 			}
-			else                                       
+			else
 			{
-				int count = get_mine_count(mine, x, y); //告知周围雷个数
-				show[x][y] = count + '0';
-				win++;
-				Displayboard(show, row, col);       //显示排查雷的信息
+				Open(show, mine, x, y);
+				Displayboard(show, ROW, COL);
+				/*Displayboard(mine, ROW, COL);*/
 			}
 		}
 		else
 		{
-			printf("坐标非法，请重新输入\n");       //判断坐标合法性
+			printf("坐标非法，请重新输入\n");
 		}
-	}
-	if (win == row * col - number)
-	{
-		printf("恭喜你！排雷成功！\n");
-		Displayboard(mine, row, col);
-		printf("ps:“1”表示雷\n");
-	}
-}
-
-
- static int get_mine_count(char mine[ROWs][COLs], int x, int y)
-{
-	int i, j;
-	int count = 0;
-	for(i=x-1;i<=x+1;i++)
-	{
-		for (j = y - 1; j <= y + 1; j++)
+		int win = 0;
+		int i, j;
+		for (i = 0; i <= ROW; i++)
 		{
-			if (mine[i][j] == '1')
-				count++;
+			for (j = 0; j <= COL; j++)
+			{
+				if (show[i][j] != '*')
+				{
+					win++;
+				}
+			}
+		}
+		if (win == ROW * COL - number)
+		{
+			printf("YOU ARE WINNER！！！！！！！！！！\n\n\n\n\n\n\n");
+			break;
 		}
 	}
-	return count;
 }
+
+
+int get_mine_count(char mine[ROWs][COLs], int x, int y)
+	{
+		int i, j;
+		int count = 0;
+		for (i = x - 1; i <= x + 1; i++)
+		{
+			for (j = y - 1; j <= y + 1; j++)
+			{
+				if (mine[i][j] == '1')
+					count++;
+			}
+		}
+		return count;
+	}
+
+
+
+
+void Open(char show[ROWs][COLs], char mine[ROWs][COLs], int x, int  y)  //x为行,y为列
+{
+	if (x >= 1 && x <= ROW && y >= 1 && y <= COL)
+	{
+		int count = get_mine_count(mine, x, y);
+		if (count != 0)
+		{
+			show[x][y] = '0' + count;
+		}
+		else if (show[x][y] != ' ')
+		{
+			show[x][y] = ' ';
+			int i = 0;
+			for (i = x - 1; i <= x + 1; i++)
+			{
+				int j = 0;
+				for (j = y - 1; j <= y + 1; j++)
+				{
+					Open(show, mine, i, j);
+				}
+			}
+		}
+		else
+		{
+			return;
+		}
+	}
+
+}
+
