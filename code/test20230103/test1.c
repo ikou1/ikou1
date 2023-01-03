@@ -1,29 +1,29 @@
 #define  _CRT_SECURE_NO_WARNINGS 1
 #include<stdio.h>
-int check(char* tmp)
+struct stu
 {
-	if (*tmp == 0x01)
-	{
-		return 1;
-	}
-	else
-		return 0;
-}
+	int id;
+	char name[20];
+	int math_score;
+	int phy_score;
+	int eng_score;
+};
 int main()
 {
-	int a = 1;
-	if (check((char*)&a))
+	int num;
+	scanf("%d", &num);
+	struct stu arr[10];
+	for (int i = 0; i < num; i++)
 	{
-		printf("Ð¡¶Ë");
+		scanf("%d %s %d %d %d", &(arr[i].id), &(arr[i].name), &(arr[i].math_score), &(arr[i].phy_score), &(arr[i].eng_score));
 	}
-	else if (check((char*)&a)== 0)
+	int average[10];
+	for (int i = 0; i < num; i++)
 	{
-		printf("´ó¶Ë");
+		average[i] = (arr[i].math_score + arr[i].eng_score + arr[i].phy_score) / 3;
 	}
-	else
+	for (int i = 0; i < num; i++)
 	{
-
+		printf("The average score of the %dth student is %d.\n", i + 1, average[i]);
 	}
-	printf("\n%d",*(char*)&a);
-		return;
 }
