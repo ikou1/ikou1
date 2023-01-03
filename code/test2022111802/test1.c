@@ -80,6 +80,10 @@ int main()
 	int sign = 1;
 	for (int i = 0; i < n; i++)     //此处时间复杂度O（N^2*logN)
 	{
+		if (sign == 0)
+		{
+			break;
+		}
 		for (int j = 0; i < n; i++)       
 		{
 			if (bubblesearch(arr2,sizeof(arr2)/sizeof(arr2[0]), m - arr[i] - arr[j]))
