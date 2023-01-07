@@ -1,29 +1,67 @@
 #define  _CRT_SECURE_NO_WARNINGS 1
 #include<stdio.h>
-struct stu
+#include<string.h>
+char* username(char* str)
 {
-	int id;
-	char name[20];
-	int math_score;
-	int phy_score;
-	int eng_score;
-};
+	int len = strlen(str);
+	int i = 0;
+	int j = 0;
+	while (i <= strlen(str) - 1)
+	{
+		if ((str[i]) >= 'A' && (str[i] <= 'Z') || (str[i] >= 'a' && str[j] <= 'z'))   //为字母则赋值
+		{
+			str[j++] = str[i++];
+		}
+		else
+		{
+			i++;
+		}
+	}
+	int k = 0;
+	int m = j - 1;
+	for (j = 0; j <= m; j += 2)
+	{
+		str[k] = str[j];
+		k++;
+	}
+	str[k] = '\0';
+	return str;
+}
+
+
+char* password(char* str)
+{
+	int len = strlen(str);
+	int i = 0; int j = 0;
+	while (i <= strlen(str) - 1)
+	{
+		if (str[i] >= '0' && str[i] <= '9')      //为数字则赋值
+		{
+			str[j++] = str[i++];
+		}
+		else
+		{
+			i++;
+		}
+	}
+	int k = 0;
+	int m = j - 1;
+	for (j = 1; j <= m; j += 2)
+	{
+		str[k] = str[j];
+		k++;
+	}
+	str[k] = '\0';
+	return str;
+}
 int main()
 {
-	int num;
-	scanf("%d", &num);
-	struct stu arr[10];
-	for (int i = 0; i < num; i++)
-	{
-		scanf("%d %s %d %d %d", &(arr[i].id), &(arr[i].name), &(arr[i].math_score), &(arr[i].phy_score), &(arr[i].eng_score));
-	}
-	int average[10];
-	for (int i = 0; i < num; i++)
-	{
-		average[i] = (arr[i].math_score + arr[i].eng_score + arr[i].phy_score) / 3;
-	}
-	for (int i = 0; i < num; i++)
-	{
-		printf("The average score of the %dth student is %d.\n", i + 1, average[i]);
-	}
+	char arr1[20] = { '\0' };
+	char arr2[20] = { '\0' };
+	printf("请输入字符串1\n");
+	scanf("%s", arr1);
+	printf("请输入字符串2\n");
+	scanf("%s", arr2);
+	printf("用户名为%s\n", username(arr1));
+	printf("密码为%s\n", password(arr2));
 }
