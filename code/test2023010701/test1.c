@@ -13,7 +13,7 @@ struct student
 typedef struct student student;
 
 
-void printintarr(int arr[], int n)
+void print_int_arr(int arr[], int n)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -21,7 +21,7 @@ void printintarr(int arr[], int n)
 	}
 }
 
-void printstugrades(student arr2[], int n)
+void print_stu_grades(student arr2[], int n)
 {
 	int arr[50] = { 0 };
 	int grade = 0;
@@ -49,10 +49,39 @@ void printstugrades(student arr2[], int n)
 	}
 }
 
-int stugradescmp(const void* e1, const void* e2)
+int stu_grades_cmp1(const void* e1, const void* e2)
 {
 	return (*((student*)e2)).grade - (*((student*)e1)).grade;
 }
+
+
+
+
+
+void bubblesort(void* base, size_t num, size_t width, int(*cmp)(const void*,const void*))
+{
+	int i, j;
+	for (int i = 0; i < num-1; i++)
+	{
+		for (int j = 0; j <num-1-i ; j++)
+		{
+			if (cmp((char*)base + j * width, (char*)base + (j + 1) * width) > 0)
+			{
+				char* p1 = (char*)base + j * width;
+				char* p2 = (char*)base + (j + 1) * width;
+				for (int k = 0; k < width; k++)
+				{
+					char tmp = *(p1+k);
+					*(p1+k) = *(p2+k);
+					*(p2+k) = tmp;
+				}
+			}
+		}
+	}
+}
+
+
+
 int main()
 {
 	//int arr[10] = { 1,3,5,7,9,2,4,6,8,10 };
@@ -63,6 +92,7 @@ int main()
 	{
 		scanf("%s %d",&arr2[i].name,&arr2[i].grade);
 	}
-	qsort(arr2, 5, sizeof(arr2[0]), stugradescmp);
-	printstugrades(arr2, 5);
+	/*qsort(arr2, 5, sizeof(arr2[0]), stu_grades_cmp1);*/
+	bubblesort(arr2, 5, sizeof(arr2[0]), stu_grades_cmp1);
+	print_stu_grades(arr2, 5);
 }
