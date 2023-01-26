@@ -19,6 +19,31 @@ char* my_strcat1(char*dest,const char*rec)
 
 }
 
+size_t my_strlen(char* str)
+{
+	size_t k = 0;
+	while (*str++)
+	{
+		k++;
+	}
+	return k;
+}
+
+
+
+char* my_strcpy(char* str1, const char* str2)
+{
+	assert(str1);
+	assert(str2);
+	char* ret = str1;
+	while (*str1++ = *str2++)
+	{
+		;
+	}
+	return  ret;
+}
+
+
 char* my_strcat2(char* dest, const char* rec)
 {
 	assert(dest);
@@ -172,5 +197,16 @@ int main()
 	/*printf("%s\n", my_strcat1(arr1, arr2));*/
 	/*printf("%s\n", my_strcat2(arr1, arr2));*/
 	/*printf("%d\n", my_strcmp2(arr1, arr2));*/
-	printf("%s\n",my_strstr2(arr1,arr2));
+	/*printf("%s\n",my_strstr2(arr1,arr2));*/
+	/*char arr3[20] = "xhy@year.net";
+	char arr4[20];
+	strcpy(arr4, arr3);
+	char* p = "@.";
+	for (char* ret = strtok(arr4, p); ret != NULL; ret = strtok(NULL, p))
+	{
+		char* p1 = ret;
+		printf("%s\n",ret);
+	}*/
+	/*my_strcpy(arr1, arr2);
+	printf("%s\n",arr1);*/
 }
