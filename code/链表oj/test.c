@@ -1,44 +1,102 @@
 #define  _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
 #include<stdlib.h>
- typedef struct ListNode
+#include<memory.h>
+char lamp[10][10];
+char backup[10][10];
+int n;
+int step;
+int min = 10;
+int dx[5] = { -1,0,0,0,1 };
+int dy[5] = { 0,1,0,-1,0 };
+void turn(int i)
 {
-	int val;
-	struct ListNode* next;
-}ListNode;
- 
+    if (i == 5)
+    {
+        for (int j = 1; j <= 5; j++)
+        {
+            if (backup[5][j] == '0')
+            {
+                return;
+            }
+        }
+        if (step > 6)
+        {
+            return;
+        }
+        if (step < min)
+        {
+            min = step;
+            memcpy(lamp, backup, sizeof(lamp));
+            return;
+        }
+    }
+    for (int j = 1; j <= 5; j++)
+    {
+        if (backup[i - 1][j] == '0')
+        {
+            step++;
+            for (int k = 0; k <= 5; k++)
+            {
+                int inew = i + dy[k];
+                int jnew = j + dx[k];
+                if (jnew <= 5 && jnew >= 1 && inew >= 1 && inew <= 5)
+                {
+                    backup[inew][jnew] ^= 1;
+                }
+            }
+        }
+    }
+    turn(i + 1);
+}
 
- int  hasCycle(struct ListNode* head)
- {
-     if (!head)
-     {
-         return 0;
-     }
-     struct ListNode* tail = head;
-     if (head->next == head)
-     {
-         return 1;
-     }
-     head->val = 0;
-     while (tail)
-     {
-         if (tail->val)
-         {
-             return 1;
-         }
-         tail->val = 1;
-         tail = tail->next;
-     }
-     return 0;
- }
+
+
+void dfs(int u)   //枚举第一行
+{
+    if (u > 5)
+    {
+        turn(2);
+        step--;
+        return;
+    }
+    backup[1][u] = '1';
+    step++;
+    dfs(u + 1);
+    backup[1][u] = '2';
+
+    backup[1][u] = '0';
+    dfs(u + 1);
+    backup[1][u] = '2';
+}
+
+
 
 int main()
 {
-	ListNode* head = (ListNode*)malloc(sizeof(ListNode));
-	ListNode* p2 = (ListNode*)malloc(sizeof(ListNode));
-	head->next = p2;
-	p2->next = NULL;
-	head->val = 1;
-	p2->val = 2;
-    hasCycle(head);
-   
+    scanf("%d", &n);
+    while (n--)
+    {
+        step = 0;
+        min = 10;
+        for (int i = 1; i <= 5; i++)
+        {
+            for (int j = 1; j <= 5; j++)
+            {
+                scanf("%c", lamp[i][j]);
+            }
+        }
+        memcpy(backup, lamp, sizeof(lamp));
+        dfs(1);
+        printf("%d\n", min);
+        for (int i = 1; i <= 5; i++)
+        {
+            for (int j = 1; j <= 5; j++)
+            {
+                printf("%c", lamp[i][j]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
 }

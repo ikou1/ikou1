@@ -31,13 +31,11 @@ int main()
 		case delete_lib:
 		{
 			lib_delete(&lib);
-			system("cls");
 			break;
 		}
 		case search_lib:
 		{
 			lib_search(&lib);
-			system("cls");
 
 
 			break;
